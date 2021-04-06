@@ -19,7 +19,7 @@ public class SandboxPage extends BasePage {
     private By searchBox = By.id("wp-block-search__input-1");
     private By searchBtn = By.xpath("//button[text()='Search']");
     private By noSearchResults = By.xpath("//h1[text()='Nothing Found']");
-    private By twitterBtn = By.xpath("//span[text()='Twitter']");
+    private By twitterBtn = By.xpath("//a[@title='Click to share on Twitterr']");
     private By map = By.tagName("canvas");
     private By alertBtn = By.id("alert");
     private By confirmBtn = By.id("confirm");

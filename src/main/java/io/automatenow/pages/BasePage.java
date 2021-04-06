@@ -48,11 +48,12 @@ public class BasePage {
     }
 
     private void openBrowser() {
-        if (browser.equals("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-        }
-        driver.manage().window().maximize();
+            if (browser.equals("chrome")) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            driver.manage().window().maximize();
     }
 
     public void closeBrowser() {
