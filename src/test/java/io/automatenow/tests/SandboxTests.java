@@ -182,4 +182,14 @@ public class SandboxTests extends BaseTest {
         // Scroll up
         scrollPage(0,-500);
     }
+
+    @Test(description = "Takes a page screenshot")
+    public void testPageScreenshot() {
+        takeScreenshot();
+    }
+
+    @Test(description = "Takes an element's screenshot")
+    public void testElementScreenshot() {
+        sandboxPage.screenshotModalsButton();
+    }
 }

@@ -90,4 +90,9 @@ public class SandboxPage extends BasePage {
         click(hoverBtn);
         return new HoverPage();
     }
+
+    public SandboxPage screenshotModalsButton() {
+        takeElementScreenshot(modalsBtn);
+        return this;
+    }
 }
