@@ -4,6 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,6 +53,13 @@ public class BasePage {
     private void openBrowser() {
             if (browser.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
+
+                // Run in headless mode
+//                ChromeOptions options = new ChromeOptions();
+//                options.addArguments("--headless");
+//                options.addArguments("--window-size=1920,1080");
+//                driver = new ChromeDriver(options);  // comment out line 63 when uncommenting this line
+
                 driver = new ChromeDriver();
             }
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
