@@ -1,5 +1,6 @@
 package io.automatenow.pages;
 
+import io.netty.handler.codec.http.multipart.FileUpload;
 import org.openqa.selenium.By;
 
 import java.util.Iterator;
@@ -19,6 +20,7 @@ public class SandboxPage extends BasePage {
     private By popupsBtn = By.xpath("//a[contains(text(),'Popups')]");
     private By modalsBtn = By.xpath("//a[contains(text(),'Modals')]");
     private By hoverBtn = By.xpath("//a[contains(text(),'Hover')]");
+    private By fileUpload = By.xpath("//a[contains(text(),'File Upload')]");
 
     public String getPageTitle() {
         return driver.getTitle();
@@ -89,6 +91,11 @@ public class SandboxPage extends BasePage {
     public HoverPage clickHover() {
         click(hoverBtn);
         return new HoverPage();
+    }
+
+    public FileUploadPage clickFileUpload() {
+        click(fileUpload);
+        return new FileUploadPage();
     }
 
     public SandboxPage screenshotModalsButton() {

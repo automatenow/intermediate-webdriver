@@ -192,4 +192,10 @@ public class SandboxTests extends BaseTest {
     public void testElementScreenshot() {
         sandboxPage.screenshotModalsButton();
     }
+
+    @Test(description = "Uploads a file")
+    public void testFileUpload() {
+        FileUploadPage fileUpload = sandboxPage.clickFileUpload();
+        fileUpload.uploadFile("<filepath_and_filename>");
+    }
 }
