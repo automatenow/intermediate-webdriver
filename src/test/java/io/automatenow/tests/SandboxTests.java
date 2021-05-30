@@ -198,4 +198,10 @@ public class SandboxTests extends BaseTest {
         FileUploadPage fileUpload = sandboxPage.clickFileUpload();
         fileUpload.uploadFile("<filepath_and_filename>");
     }
+
+    @Test(description = "Downloads a file")
+    public void testFileDownload() {
+        FileDownloadPage fileDownload = sandboxPage.clickFileDownload();
+        fileDownload.downloadPDF();
+    }
 }

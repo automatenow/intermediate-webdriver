@@ -14,8 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author Marco A. Cruz
@@ -59,6 +58,13 @@ public class BasePage {
 //                options.addArguments("--headless");
 //                options.addArguments("--window-size=1920,1080");
 //                driver = new ChromeDriver(options);  // comment out line 63 when uncommenting this line
+
+                // Change download default directory
+//                ChromeOptions options = new ChromeOptions();
+//                Map<String, Object> prefs = new HashMap<String, Object>();
+//                prefs.put("download.default_directory", "<directory such as C:\\MyFolder\\");
+//                options.setExperimentalOption("prefs", prefs);
+//                driver = new ChromeDriver(options);
 
                 driver = new ChromeDriver();
             }
