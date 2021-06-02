@@ -57,13 +57,18 @@ public class BasePage {
 //                ChromeOptions options = new ChromeOptions();
 //                options.addArguments("--headless");
 //                options.addArguments("--window-size=1920,1080");
-//                driver = new ChromeDriver(options);  // comment out line 63 when uncommenting this line
+//                driver = new ChromeDriver(options);
 
                 // Change download default directory
 //                ChromeOptions options = new ChromeOptions();
 //                Map<String, Object> prefs = new HashMap<String, Object>();
 //                prefs.put("download.default_directory", "<directory such as C:\\MyFolder\\");
 //                options.setExperimentalOption("prefs", prefs);
+//                driver = new ChromeDriver(options);
+
+                // Disable message 'Chrome is being controlled by automated test software'
+//                ChromeOptions options = new ChromeOptions();
+//                options.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 //                driver = new ChromeDriver(options);
 
                 driver = new ChromeDriver();
