@@ -232,4 +232,16 @@ public class BasePage {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @param frame The index of the frame to switch to (first frame has index 0)
+     */
+    public void switchFrames(int frame) {
+        driver.switchTo().frame(frame);
+    }
+
+    public void switchToDefaultFrame() {
+        driver.switchTo().defaultContent();
+    }
 }

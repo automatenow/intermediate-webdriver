@@ -22,6 +22,7 @@ public class SandboxPage extends BasePage {
     private By hoverBtn = By.xpath("//a[contains(text(),'Hover')]");
     private By fileUpload = By.xpath("//a[contains(text(),'File Upload')]");
     private By fileDownload = By.xpath("//a[contains(text(),'File Download')]");
+    private By iframes = By.xpath("//a[contains(text(),'IFrames')]");
 
     public String getPageTitle() {
         return driver.getTitle();
@@ -107,5 +108,10 @@ public class SandboxPage extends BasePage {
     public SandboxPage screenshotModalsButton() {
         takeElementScreenshot(modalsBtn);
         return this;
+    }
+
+    public IframesPage clickIframes() {
+        click(iframes);
+        return new IframesPage();
     }
 }

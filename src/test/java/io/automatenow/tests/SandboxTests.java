@@ -204,4 +204,14 @@ public class SandboxTests extends BaseTest {
         FileDownloadPage fileDownload = sandboxPage.clickFileDownload();
         fileDownload.downloadPDF();
     }
+
+    @Test(description = "Works with iframes")
+    public void testIframes() {
+        IframesPage iframes = sandboxPage.clickIframes();
+        switchFrames(0);
+        iframes.wikiSearch("test automation");
+        switchToDefaultFrame();
+        String pageHeading = iframes.getPageHeading();
+        assertEquals(pageHeading, "IFrames", "Page heading does not match.");
+    }
 }
