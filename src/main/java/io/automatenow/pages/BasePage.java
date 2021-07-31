@@ -244,4 +244,13 @@ public class BasePage {
     public void switchToDefaultFrame() {
         driver.switchTo().defaultContent();
     }
+
+    public void setCookie(String name, String value) {
+        Cookie cookie = new Cookie(name, value);
+        driver.manage().addCookie(cookie);
+    }
+
+    public Cookie getCookie(String name) {
+        return driver.manage().getCookieNamed(name);
+    }
 }

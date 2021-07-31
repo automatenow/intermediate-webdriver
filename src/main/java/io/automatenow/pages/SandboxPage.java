@@ -1,8 +1,6 @@
 package io.automatenow.pages;
 
-import io.netty.handler.codec.http.multipart.FileUpload;
 import org.openqa.selenium.By;
-
 import java.util.Iterator;
 import java.util.Set;
 

@@ -1,8 +1,17 @@
 package io.automatenow.tests;
 
 import io.automatenow.pages.*;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.testng.Assert.*;
 
@@ -213,5 +222,23 @@ public class SandboxTests extends BaseTest {
         switchToDefaultFrame();
         String pageHeading = iframes.getPageHeading();
         assertEquals(pageHeading, "IFrames", "Page heading does not match.");
+    }
+
+    @Test(description = "Tests table pagination")
+    public void testTablePagination() {
+        TablesPage tables = sandboxPage.clickTables();
+        tables.sortByCountry();
+        String populationUK = tables.getPopulation("United Kingdom" +
+                "");
+        assertNotEquals(populationUK, "-1", "The country was not found on the list!");
+        System.out.println("The population for United Kingdom is " + populationUK + " million.");
+    }
+
+    @Test(description = "Tests setting a cookie")
+    public void testSetCookie() {
+        String cookieName = "chocolate_chip";
+        setCookie(cookieName, "123");
+        Cookie myCookie = getCookie(cookieName);
+        assertEquals(myCookie.getName(), cookieName, "Cookie not properly set.");
     }
 }
