@@ -31,7 +31,7 @@ public class SandboxTests extends BaseTest {
     @Test(description = "Verify the page title")
     public void testPageTitle() {
         String title = sandboxPage.getPageTitle();
-        assertEquals(title, "Sandbox – AUTOMATENOW", "Page title did not match");
+        assertEquals(title, "Sandbox – automateNow", "Page title did not match");
     }
 
     @Test(description = "Enters text in an input field")
@@ -234,7 +234,8 @@ public class SandboxTests extends BaseTest {
         String populationUK = tables.getPopulation("United Kingdom" +
                 "");
         assertNotEquals(populationUK, "-1", "The country was not found on the list!");
-        System.out.println("The population for United Kingdom is " + populationUK + " million.");
+//        System.out.println("The population for the United Kingdom is " + populationUK + " million.");
+        log.info("The population for the United Kingdom is " + populationUK + " million.");
     }
 
     @Test(description = "Tests setting a cookie")
