@@ -1,11 +1,13 @@
 package io.automatenow.tests;
 
 import io.automatenow.pages.*;
+import io.automatenow.utils.TestListener;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.lang.reflect.Array;
@@ -18,6 +20,7 @@ import static org.testng.Assert.*;
 /**
  * @author Marco A. Cruz
  */
+@Listeners(TestListener.class)
 public class SandboxTests extends BaseTest {
 
     @BeforeClass
