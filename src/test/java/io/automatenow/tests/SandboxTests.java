@@ -1,19 +1,14 @@
 package io.automatenow.tests;
 
 import io.automatenow.pages.*;
+import io.automatenow.utils.DataUtil;
 import io.automatenow.utils.TestListener;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WindowType;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.testng.Assert.*;
 
@@ -192,7 +187,7 @@ public class SandboxTests extends BaseTest {
         // Scroll down
         scrollPage(0, 500);
         // Scroll up
-        scrollPage(0,-500);
+        scrollPage(0, -500);
     }
 
     @Test(description = "Takes a page screenshot")
@@ -244,5 +239,20 @@ public class SandboxTests extends BaseTest {
         setCookie(cookieName, "123");
         Cookie myCookie = getCookie(cookieName);
         assertEquals(myCookie.getName(), cookieName, "Cookie not properly set.");
+    }
+
+    @Test(description = "Submits a form", dataProviderClass = DataUtil.class, dataProvider = "dataProvider1")
+    public void testSubmitForm(HashMap<String, String> hashMap) {
+        FormFieldsPage formFields = sandboxPage.clickFormFields();
+        formFields.setInputFieldText(hashMap.get("Input Field"))
+                .selectCheckbox(hashMap.get("Checkbox"))
+                .selectRadioButton(hashMap.get("Radio Button"))
+                .selectFromDropdown(hashMap.get("Dropdown"))
+                .setEmail(hashMap.get("Email"))
+                .setMessage(hashMap.get("Message"))
+                .clickSubmit();
+
+        String confirmationMsg = formFields.getConfirmationMessage();
+        assertTrue(confirmationMsg.contains("Message Sent"), "Form not submitted successfully");
     }
 }
