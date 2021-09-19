@@ -1,18 +1,19 @@
 package io.automatenow.tests;
 
+import io.automatenow.utils.TestListener;
 import org.testng.annotations.*;
-
 import static org.testng.Assert.*;
 
 /**
  * @author Marco A. Cruz
  */
+@Listeners(TestListener.class)
 public class HomepageTests extends BaseTest {
 
     @Test(description = "Verify page title")
     public void testPageTile() {
         String pageTitle = homePage.getPageTitle();
-        assertEquals(pageTitle, "AUTOMATENOW – A place for learning software automated testing.", "The page title did not match!");
+        assertEquals(pageTitle, "Home - automateNow", "The page title did not match!");
     }
 
     @Test(description = "Verify welcome message")

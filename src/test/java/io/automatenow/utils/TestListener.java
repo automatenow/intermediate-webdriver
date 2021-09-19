@@ -35,8 +35,7 @@ public class TestListener extends BasePage implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.printf("test " + methodName + " has failed and a screenshot has been taken.");
+        log.error("Test '" + methodName + "' has failed and a screenshot was taken.");
     }
 
     @Override

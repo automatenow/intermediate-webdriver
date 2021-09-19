@@ -10,12 +10,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.asserts.SoftAssert;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
@@ -211,13 +214,24 @@ public class BasePage {
     }
 
     /**
-     * Takes screenshot of whole page
+     * Takes screenshot of whole page and uses the current date/time as the file name
      */
     public void takeScreenshot() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH-mm-ss-SSS");
+        LocalDateTime dateTime = LocalDateTime.now();
+        takeScreenshot(dateTime.format(formatter));
+    }
+
+    /**
+     * Takes screenshot of whole page
+     *
+     * @param screenshotName The screenshot file name
+     */
+    public void takeScreenshot(String screenshotName) {
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File file = screenshot.getScreenshotAs(OutputType.FILE);
         try {
-            FileUtils.copyFile(file, new File("./screenshot.png"));
+            FileUtils.copyFile(file, new File("./failed_tests/" + screenshotName + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
