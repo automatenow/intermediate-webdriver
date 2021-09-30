@@ -4,7 +4,7 @@ import io.automatenow.pages.*;
 import io.automatenow.utils.DataUtil;
 import io.automatenow.utils.TestListener;
 import org.openqa.selenium.Cookie;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -18,7 +18,7 @@ import static org.testng.Assert.*;
 @Listeners(TestListener.class)
 public class SandboxTests extends BaseTest {
 
-    @BeforeClass
+    @BeforeTest
     public void testNavigateToSandboxPage() {
         navBar.selectSandbox();
     }
