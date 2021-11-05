@@ -1,0 +1,20 @@
+{
+  "form info": [
+    {
+      "Input Field" : "Hello",
+      "Checkbox" : "1",
+      "Radio Button" : "White",
+      "Dropdown" : "Binary",
+      "Email" : "info@automatenow.io",
+      "Message" : "This is a test."
+    },
+    {
+      "Input Field" : "Hello again",
+      "Checkbox" : "3",
+      "Radio Button" : "Blue",
+      "Dropdown" : "Decimal",
+      "Email" : "@@@",
+      "Message" : "This is another test."
+    }
+  ]
+}

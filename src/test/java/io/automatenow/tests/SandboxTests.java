@@ -241,7 +241,7 @@ public class SandboxTests extends BaseTest {
         assertEquals(myCookie.getName(), cookieName, "Cookie not properly set.");
     }
 
-    @Test(description = "Submits a form", dataProviderClass = DataUtil.class, dataProvider = "dataProvider1")
+    @Test(description = "Submits a form using JSON data", dataProviderClass = DataUtil.class, dataProvider = "dataProvider1")
     public void testSubmitForm(HashMap<String, String> hashMap) {
         FormFieldsPage formFields = sandboxPage.clickFormFields();
         formFields.setInputFieldText(hashMap.get("Input Field"))
@@ -250,6 +250,23 @@ public class SandboxTests extends BaseTest {
                 .selectFromDropdown(hashMap.get("Dropdown"))
                 .setEmail(hashMap.get("Email"))
                 .setMessage(hashMap.get("Message"))
+                .clickSubmit();
+
+        String confirmationMsg = formFields.getConfirmationMessage();
+        assertTrue(confirmationMsg.contains("Message Sent"), "Form not submitted successfully");
+    }
+
+    @Test(description = "Submits a form using JSON array data", dataProviderClass = DataUtil.class, dataProvider = "dataProvider2")
+    public void testSubmitForm2(String data) {
+        String[] formInfo = data.split(",");
+        driver.get("https://automatenow.io/sandbox-automation-testing-practice-website/");
+        FormFieldsPage formFields = sandboxPage.clickFormFields();
+        formFields.setInputFieldText(formInfo[0])
+                .selectCheckbox(formInfo[1])
+                .selectRadioButton(formInfo[2])
+                .selectFromDropdown(formInfo[3])
+                .setEmail(formInfo[4])
+                .setMessage(formInfo[5])
                 .clickSubmit();
 
         String confirmationMsg = formFields.getConfirmationMessage();
