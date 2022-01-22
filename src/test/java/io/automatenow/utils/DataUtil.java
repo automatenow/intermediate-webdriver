@@ -73,7 +73,7 @@ public class DataUtil extends BaseTest {
         JSONObject formInfoData;
         String inputField, checkbox, radioBtn, dropdown, email, message;
 
-        // Get data from JSONArray and tore in String array
+        // Get data from JSONArray and store it in String array
         for (int i = 0; i < formInfo.size(); i++) {
             formInfoData = (JSONObject) formInfo.get(i);
             inputField = (String) formInfoData.get("Input Field");
