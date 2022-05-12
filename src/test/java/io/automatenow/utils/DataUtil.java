@@ -1,5 +1,9 @@
 package io.automatenow.utils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import io.automatenow.tests.BaseTest;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -7,16 +11,19 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.DataProvider;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class DataUtil extends BaseTest {
 
     @DataProvider
-    public Object[] dataProvider1() {
+    public static Object[] dataProvider1() {
         JSONParser parser = new JSONParser();
         JSONObject jsonObject = null;
 
@@ -49,7 +56,7 @@ public class DataUtil extends BaseTest {
     }
 
     @DataProvider
-    public Object[] dataProvider2() {
+    public static Object[] dataProvider2() {
         JSONParser parser = new JSONParser();
         JSONObject jsonObject;
 
@@ -86,5 +93,50 @@ public class DataUtil extends BaseTest {
             dataArray[i] = inputField + "," + checkbox + "," + radioBtn + "," + dropdown + "," + email + "," + message;
         }
         return  dataArray;
+    }
+
+    @DataProvider
+    public static Object[][] dataProvider3() {
+        return readJson("src/main/resources/testData3.json", "data 1");
+    }
+
+    @DataProvider
+    public static Object[][] dataProvider4() {
+        return readJson("src/main/resources/testData3.json", "data 2");
+    }
+
+    // This method uses the GSON library to parse JSON data
+    public static Object[][] readJson(String filename, String jsonObj) {
+        File file = new File(filename);
+        JsonElement jsonElement = null;
+
+        // Parse JSON data
+        try {
+            jsonElement = JsonParser.parseReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        assert jsonElement != null;
+        // Get entire JSON object
+        JsonObject jsonObj1 = jsonElement.getAsJsonObject();
+        // Get individual JSON array object
+        JsonArray jsonArray = jsonObj1.get(jsonObj).getAsJsonArray();
+
+        // Java array to store JSON data
+        Object[][] testData = new Object[jsonArray.size()][1];
+
+        // Read data inside JSON array and store it in Java array
+        for (int i = 0; i < jsonArray.size(); i++) {
+            JsonObject jsonObj2 = jsonArray.get(i).getAsJsonObject();
+            Map<Object, Object> map = new HashMap<>();
+
+            for (String key : jsonObj2.keySet()) {
+                String value = jsonObj2.get(key).getAsString();
+                map.put(key, value);
+            }
+            testData[i][0] = map;
+        }
+        return testData;
     }
 }

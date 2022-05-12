@@ -20,7 +20,7 @@ public class SandboxTests extends BaseTest {
 
     @BeforeTest
     public void testNavigateToSandboxPage() {
-        navBar.selectSandbox();
+        navBar.acceptCookies().selectSandbox();
     }
 
     @Test(description = "Verify the page title")
@@ -259,7 +259,7 @@ public class SandboxTests extends BaseTest {
     @Test(description = "Submits a form using JSON array data", dataProviderClass = DataUtil.class, dataProvider = "dataProvider2")
     public void testSubmitForm2(String data) {
         String[] formInfo = data.split(",");
-        driver.get("https://automatenow.io/sandbox-automation-testing-practice-website/");
+
         FormFieldsPage formFields = sandboxPage.clickFormFields();
         formFields.setInputFieldText(formInfo[0])
                 .selectCheckbox(formInfo[1])
@@ -271,5 +271,34 @@ public class SandboxTests extends BaseTest {
 
         String confirmationMsg = formFields.getConfirmationMessage();
         assertTrue(confirmationMsg.contains("Message Sent"), "Form not submitted successfully");
+    }
+
+    @Test(dataProviderClass = DataUtil.class, dataProvider = "dataProvider3")
+    public void testSubmitForm3(HashMap<String, String> hashMap) {
+        FormFieldsPage formFields = sandboxPage.clickFormFields();
+        formFields.setInputFieldText(hashMap.get("Input Field"))
+                .selectCheckbox(hashMap.get("Checkbox"))
+                .selectRadioButton(hashMap.get("Radio Button"))
+                .selectFromDropdown(hashMap.get("Dropdown"))
+                .setEmail(hashMap.get("Email"))
+                .setMessage(hashMap.get("Message"))
+                .clickSubmit();
+
+        String confirmationMsg = formFields.getConfirmationMessage();
+        assertTrue(confirmationMsg.contains("Message Sent"), "Form not submitted successfully");
+    }
+
+    @Test(dataProviderClass = DataUtil.class, dataProvider = "dataProvider4")
+    public void testVerifyTableItems(HashMap<String, String> hashMap) {
+        TablesPage tables = sandboxPage.clickTables();
+
+        String price = tables.getItemPrice("Oranges");
+        assertEquals(price, hashMap.get("Oranges"), "Price mismatch");
+
+        price = tables.getItemPrice("Laptop");
+        assertEquals(price, hashMap.get("Laptop"), "Price mismatch");
+
+        price = tables.getItemPrice("Marbles");
+        assertEquals(price, hashMap.get("Marbles"), "Price mismatch");
     }
 }
